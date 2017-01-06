@@ -2,6 +2,7 @@ var path = require('path');
 var express = require('express');
 var fs = require('fs');
 
+var port = process.env.PORT || 3000;
 var app = express();
 
 // View engine setup
@@ -34,6 +35,6 @@ app.get('/', (req, res) => {
 	});
 });
 
-app.listen(3000, () => {
-	console.log('Console is up on port 3000');
+app.listen(port, () => {
+	console.log(`Console is up on port ${port}`);
 });
