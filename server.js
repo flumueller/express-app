@@ -22,16 +22,32 @@ app.use((req, res, next) => {
 	next();
 });
 
-// app.use((req, res, next) => {
-// 	res.render('maintenance');
-// });
-
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Set global variables which are accessible in all views
+app.use(function (req, res, next) {
+   res.locals = {
+     currentYear: new Date().getFullYear(),
+     name: 'Flurin'
+   };
+   next();
+});
 
 app.get('/', (req, res) => {
 	res.render('index', {
-		pageTitle: 'Home',
-		currentYear: new Date().getFullYear()
+		pageTitle: 'Home'
+	});
+});
+
+app.get('/about', (req, res) => {
+	res.render('about', {
+		pageTitle: 'About'
+	});
+});
+
+app.get('/contact', (req, res) => {
+	res.render('contact', {
+		pageTitle: 'Contact us'
 	});
 });
 
